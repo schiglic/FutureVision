@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Future Vision - ШІ</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <!-- Шапка з навігацією -->
+    <header>
+        <nav>
+            <div class="logo">Future Vision</div>
+            <ul class="nav-list">
+                <li><a href="{{ url_for('show_home') }}">Головна</a></li>
+                <li><a href="{{ url_for('show_space') }}">Космос</a></li>
+                <li><a href="{{ url_for('show_artificial') }}">ШІ</a></li>
+                <li><a href="{{ url_for('show_contacts') }}">Контакти</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Основний контент -->
+    <main>
+        <section class="hero">
+            <h1>Штучний Інтелект</h1>
+            <p>ШІ змінює світ, від автоматизації повсякденних завдань до створення інноваційних технологій. Дізнайтеся, як ми використовуємо штучний інтелект для розширення можливостей людства та майбутнього технологій.</p>
+            <div class="buttons">
+                <button class="btn-primary">Дізнатися більше</button>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

@@ -1,0 +1,162 @@
+/* Скидання стандартних стилів */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    background-color: #000; /* Чорний фон */
+    color: #fff; /* Білий текст для контрасту */
+    padding: 0;
+}
+
+/* Шапка (навігація) */
+header {
+    background-color: #000;
+    padding: 1rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+nav {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.5rem;
+    color: #9370db; /* Фіолетовий колір для логотипу */
+    font-weight: bold;
+}
+
+.nav-list {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+}
+
+.nav-list li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+}
+
+.nav-list li a:hover {
+    color: #9370db; /* Фіолетовий при наведенні */
+}
+
+/* Основний контент */
+main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 50px 20px;
+}
+
+.hero {
+    text-align: center;
+    padding: 50px 0;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    color: #9370db; /* Фіолетовий заголовок */
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.hero p {
+    font-size: 1.1rem;
+    color: #ccc; /* Світло-сірий текст для контрасту */
+    margin-bottom: 30px;
+    line-height: 1.8;
+}
+
+/* Кнопки */
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.btn-primary,
+.btn-secondary,
+.btn-tertiary {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-primary {
+    background-color: #9370db; /* Фіолетовий колір для основної кнопки */
+    color: #fff;
+}
+
+.btn-secondary {
+    background-color: #444; /* Темно-сірий для вторинної кнопки */
+    color: #fff;
+}
+
+.btn-tertiary {
+    background-color: #333; /* Ще темніший для третинної кнопки */
+    color: #fff;
+}
+
+.btn-primary:hover,
+.btn-secondary:hover,
+.btn-tertiary:hover {
+    transform: translateY(-2px); /* Легке підняття при наведенні */
+}
+
+.btn-primary:hover {
+    background-color: #7b5acb; /* Темніший фіолетовий при наведенні */
+}
+
+.btn-secondary:hover {
+    background-color: #555;
+}
+
+.btn-tertiary:hover {
+    background-color: #444;
+}
+
+/* Адаптивність для мобільних пристроїв */
+@media (max-width: 768px) {
+    .nav-list {
+        display: none; /* Приховуємо навігацію на мобільних, можна додати бургер-меню */
+    }
+
+    .logo {
+        font-size: 1.2rem;
+    }
+
+    .hero h1 {
+        font-size: 2rem;
+    }
+
+    .hero p {
+        font-size: 1rem;
+    }
+
+    .buttons {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .btn-primary,
+    .btn-secondary,
+    .btn-tertiary {
+        width: 100%;
+    }
+}

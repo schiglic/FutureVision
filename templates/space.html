@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Future Vision - Космос</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <!-- Шапка з навігацією -->
+    <header>
+        <nav>
+            <div class="logo">Future Vision</div>
+            <ul class="nav-list">
+                <li><a href="{{ url_for('show_home') }}">Головна</a></li>
+                <li><a href="{{ url_for('show_space') }}">Космос</a></li>
+                <li><a href="{{ url_for('show_artificial') }}">ШІ</a></li>
+                <li><a href="{{ url_for('show_contacts') }}">Контакти</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Основний контент -->
+    <main>
+        <section class="hero">
+            <h1>Космос</h1>
+            <p>Дізнайтеся про наші амбітні плани з дослідження космосу та колонізації нових світів.</p>
+            <div class="buttons">
+                <button class="btn-primary">Дослідити космос</button>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

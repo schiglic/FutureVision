@@ -3,8 +3,21 @@ import database  # Імпортуй модуль database.py
 
 app = Flask(__name__)
 
-# Маршрут для відображення сторінки contacts.html
+# Маршрути для сторінок
 @app.route('/')
+@app.route('/index')
+def show_home():
+    return render_template('index.html')
+
+@app.route('/space')
+def show_space():
+    return render_template('space.html')
+
+@app.route('/artificial')
+def show_artificial():
+    return render_template('artificial.html')
+
+@app.route('/contacts')
 def show_contacts():
     return render_template('contacts.html')
 
