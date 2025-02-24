@@ -1,50 +1,47 @@
-<!DOCTYPE html>
-<html lang="uk">
-<head>
-    <meta charset="UTF-8">
-    <title>Future Vision - Космос</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-</head>
-<body>
-    <!-- Шапка з навігацією -->
-    <header>
-        <nav>
-            <div class="logo">Future Vision</div>
-            <ul class="nav-list">
-                <li><a href="{{ url_for('show_home') }}">Головна</a></li>
-                <li><a href="{{ url_for('show_space') }}">Космос</a></li>
-                <li><a href="{{ url_for('show_artificial') }}">ШІ</a></li>
-                <li><a href="{{ url_for('show_contacts') }}">Контакти</a></li>
-            </ul>
-        </nav>
-    </header>
+{% extends "base.html" %}
 
-    <!-- Основний контент -->
-    <div class="container">
+{% block content %}
+    <section class="hero">
         <h1>Космічна колонізація</h1>
-        <p>Колонізація космосу - це не просто мрія, а необхідний крок для забезпечення довгострокового виживання людства. Провідні космічні агентства та приватні компанії активно працюють над технологіями, які зроблять це можливим.</p>
-        <p>Від створення самодостатніх колоній на Марсі до видобутку ресурсів на астероїдах - кожен проект наближає нас до статусу міжпланетного виду.</p>
-
-        <div class="grid-container">
-            <div class="grid-item">
-                <img src="mars-img.jpg" alt="Марс">>
-                <h2>Колонізація Марса</h2>
-                <p>SpaceX планує відправити першу вантажну місію на Марс до 2024 року, а людей - до 2026. NASA та ESA розробляють технології для тривалого перебування на планеті. Китай оголосив про плани створення марсіанської бази до 2040 року.</p>
-            </div>
-            <div class="grid-item">
-                <img src="{{ url_for('static', filename='mars-img.jpg') }}" alt="Марс">
-                <h2>Міжнародна програма Artemis</h2>
-                <p>Міжнародна програма під керівництвом NASA має на меті створення постійної присутності на Місяці. До 2025 року планується висадка астронавтів, а до 2028 - створення постійної місячної бази.</p>
-            </div>
-            <div class="grid-item">
-                <img src="earth.jpg" alt="Земля з космосу">
-                <!-- Додайте текст та зображення для третього елементу -->
-            </div>
-            <div class="grid-item">
-                <img src="space-station.jpg" alt="Космічна станція">
-                <!-- Додайте текст та зображення для четвертого елементу -->
-            </div>
+        <p>Колонізація космосу – це не лише мрія, а необхідний крок для виживання людства. Дізнайтеся про амбітні плани з освоєння Марса та Місяця.</p>
+    </section>
+    <section class="articles">
+        <article class="article-card" onclick="showModal('modal1')">
+            <h2>Колонізація Марса</h2>
+            <img src="{{ url_for('static', filename='img/mars-img.jpg') }}" alt="Марс" class="article-img">
+            <p>Клікніть, щоб дізнатися про плани SpaceX та NASA щодо Марса.</p>
+        </article>
+        <article class="article-card" onclick="showModal('modal2')">
+            <h2>Місячна програма Artemis</h2>
+            <img src="{{ url_for('static', filename='img/moon-img.jpg') }}" alt="Місяць" class="article-img">
+            <p>Дізнайтеся про повернення на Місяць і створення бази до 2028 року.</p>
+        </article>
+        <!-- Додаткові картки для астероїдів чи станцій -->
+        <article class="article-card" onclick="showModal('modal3')">
+            <h2>Видобуток ресурсів на астероїдах</h2>
+            <img src="{{ url_for('static', filename='img/asteroid-img.jpg') }}" alt="Астероїд" class="article-img">
+            <p>Клікніть, щоб дізнатися про комерційні місії.</p>
+        </article>
+    </section>
+    <div id="modal1" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('modal1')">×</span>
+            <h2>Колонізація Марса</h2>
+            <p>Деталі про Марс (додайте пізніше).</p>
         </div>
     </div>
-</body>
-</html>
+    <div id="modal2" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('modal2')">×</span>
+            <h2>Місячна програма Artemis</h2>
+            <p>Деталі про Artemis (додайте пізніше).</p>
+        </div>
+    </div>
+    <div id="modal3" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('modal3')">×</span>
+            <h2>Видобуток ресурсів на астероїдах</h2>
+            <p>Деталі про астероїди (додайте пізніше).</p>
+        </div>
+    </div>
+{% endblock %}

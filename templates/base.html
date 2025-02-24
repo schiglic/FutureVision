@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Future Vision - {{ title }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">Future Vision</div>
+            <ul class="nav-list">
+                <li><a href="{{ url_for('show_home') }}">Головна</a></li>
+                <li><a href="{{ url_for('show_space') }}">Космос</a></li>
+                <li><a href="{{ url_for('show_artificial') }}">ШІ</a></li>
+                <li><a href="{{ url_for('show_contacts') }}">Контакти</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+    <footer>
+        <p>© 2025 Future Vision. Всі права збережені.</p>
+    </footer>
+</body>
+</html>

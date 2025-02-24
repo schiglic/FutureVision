@@ -1,11 +1,9 @@
-from flask import Flask, request, jsonify, render_template
+from flask import Flask, render_template, request, jsonify
 import database  # Імпортуй модуль database.py
 
 app = Flask(__name__)
 
-# Маршрути для сторінок
 @app.route('/')
-@app.route('/index')
 def show_home():
     return render_template('index.html')
 
@@ -21,10 +19,10 @@ def show_artificial():
 def show_contacts():
     return render_template('contacts.html')
 
-# Маршрут для збереження повідомлення
 @app.route('/save-message', methods=['POST'])
-def save_message_route():
+def save_message():
     try:
+        # Отримуємо дані з JSON (оскільки JavaScript відправляє JSON)
         data = request.get_json()
         if not data or 'name' not in data or 'email' not in data or 'message' not in data:
             return jsonify({'error': 'Відсутні дані name, email або message'}), 400
@@ -33,6 +31,7 @@ def save_message_route():
         email = data['email']
         message = data['message']
         
+        # Збереження в базу даних
         database.save_message(name, email, message)
         return jsonify({'message': 'Повідомлення успішно збережено!'})
     except Exception as e:

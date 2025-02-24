@@ -1,35 +1,13 @@
-<!DOCTYPE html>
-<html lang="uk">
-<head>
-    <meta charset="UTF-8">
-    <title>Future Vision - Головна</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-</head>
-<body>
-    <!-- Шапка з навігацією -->
-    <header>
-        <nav>
-            <div class="logo">Future Vision</div>
-            <ul class="nav-list">
-                <li><a href="{{ url_for('show_home') }}">Головна</a></li>
-                <li><a href="{{ url_for('show_space') }}">Космос</a></li>
-                <li><a href="{{ url_for('show_artificial') }}">ШІ</a></li>
-                <li><a href="{{ url_for('show_contacts') }}">Контакти</a></li>
-            </ul>
-        </nav>
-    </header>
+{% extends "base.html" %}
 
-    <!-- Основний контент -->
-    <main>
-        <section class="hero">
-            <h1>Наші мрії про майбутнє</h1>
-            <p>Від колонізації Марса до квантових комп'ютерів – ми живемо в епосі, коли найсміливіші мрії перетворюються на реальність. Досліджуйте разом з нами майбутнє технологій та космічних проривів.</p>
-            <div class="buttons">
-                <button class="btn-primary">Дослідити космос</button>
-                <button class="btn-secondary">Відкрити ШІ</button>
-                <button class="btn-tertiary">Мрії про майбутнє</button>
-            </div>
-        </section>
-    </main>
-</body>
-</html>
+{% block content %}
+    <section class="hero">
+        <h1>Наші мрії про майбутнє</h1>
+        <p>Від колонізації Марса до квантових комп'ютерів – ми живемо в епосі, коли найсміливіші мрії стають реальністю. Досліджуйте з нами майбутнє технологій та космічних проривів.</p>
+        <div class="buttons">
+            <a href="{{ url_for('show_space') }}" class="btn-primary">Дослідити космос</a>
+            <a href="{{ url_for('show_artificial') }}" class="btn-secondary">Відкрити ШІ</a>
+            <button class="btn-tertiary">Мрії про майбутнє</button>
+        </div>
+    </section>
+{% endblock %}

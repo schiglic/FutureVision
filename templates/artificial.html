@@ -1,63 +1,46 @@
-<!DOCTYPE html>
-<html lang="uk">
-<head>
-    <meta charset="UTF-8">
-    <title>Future Vision - ШІ</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-</head>
-<body>
-    <!-- Шапка з навігацією -->
-    <header>
-        <nav>
-            <div class="logo">Future Vision</div>
-            <ul class="nav-list">
-                <li><a href="{{ url_for('show_home') }}">Головна</a></li>
-                <li><a href="{{ url_for('show_space') }}">Космос</a></li>
-                <li><a href="{{ url_for('show_artificial') }}">ШІ</a></li>
-                <li><a href="{{ url_for('show_contacts') }}">Контакти</a></li>
-            </ul>
-        </nav>
-    </header>
+{% extends "base.html" %}
 
-    <main>
-        <section class="hero">
-            <h1>Розвиток штучного інтелекту</h1>
-            <p>Штучний інтелект стрімко розвивається, відкриваючи нові можливості у сферах життя, від медицини до
-                автоматизованих виробничих процесів. Ми прагнемо створювати інноваційні рішення для вирішення складних
-                завдань і покращення якості життя.</p>
-            <p>Сучасні системи ШІ вже перевершують людські здібності у багатьох сферах, а компанії, такі як DeepMind,
-                Google та IBM, продовжують працювати над створенням ще більш досконалих систем, здатних вирішувати
-                складні проблеми та надавати неоціненну користь.</p>
-        </section>
-
-        <section class="features">
-            <div class="feature-card">
-                <img src="" alt="Штучний інтелект">
-                <h2>Сучасні досягнення</h2>
-                <p>GPT-4 та інші моделі демонструють вражаючі результати, обробляючи величезні обсяги тексту. DeepMind's
-                    AlphaFold революціонізує біологічні дослідження, розкриваючи складність білкових структур.</p>
-            </div>
-            <div class="feature-card">
-                <img src="space-art1.jpg" alt="Алгоритми">
-                <h2>Квантові обчислення та ШІ</h2>
-                <p>Компанії, такі як IBM, Google та інші, працюють над інтеграцією квантових обчислень для нових
-                    можливостей ШІ. Ці технології вже створюють нові стандарти у швидкості та масштабованності систем.
-                </p>
-            </div>
-        </section>
-
-        <section class="gallery">
-            <div class="gallery-item">
-                <img src="https://via.placeholder.com/300x200?text=Технології" alt="Технології">
-            </div>
-            <div class="gallery-item">
-                <img src="https://via.placeholder.com/300x200?text=Роботика" alt="Роботика">
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <p>© 2025 Future Vision. Усі права захищені.</p>
-    </footer>
-</body>
-</html>
+{% block content %}
+    <section class="hero">
+        <h1>Розвиток штучного інтелекту</h1>
+        <p>ШІ змінює світ, від медицини до автоматизації. Дізнайтеся про останні досягнення та квантові обчислення.</p>
+    </section>
+    <section class="articles">
+        <article class="article-card" onclick="showModal('modal1')">
+            <h2>Сучасні досягнення ШІ</h2>
+            <img src="{{ url_for('static', filename='img/ai1.jpg') }}" alt="ШІ досягнення" class="article-img">
+            <p>Клікніть, щоб дізнатися про GPT-4 та AlphaFold.</p>
+        </article>
+        <article class="article-card" onclick="showModal('modal2')">
+            <h2>Квантові обчислення та ШІ</h2>
+            <img src="{{ url_for('static', filename='img/ai2.jpg') }}" alt="Квантові обчислення" class="article-img">
+            <p>Дізнайтеся, як IBM і Google інтегрують квантові технології.</p>
+        </article>
+        <article class="article-card" onclick="showModal('modal3')">
+            <h2>ШІ в медицині</h2>
+            <img src="{{ url_for('static', filename='img/ai3.jpg') }}" alt="ШІ в медицині" class="article-img">
+            <p>Клікніть, щоб дізнатися про діагностику хвороб.</p>
+        </article>
+    </section>
+    <div id="modal1" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('modal1')">×</span>
+            <h2>Сучасні досягнення ШІ</h2>
+            <p>Деталі про досягнення (додайте пізніше).</p>
+        </div>
+    </div>
+    <div id="modal2" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('modal2')">×</span>
+            <h2>Квантові обчислення та ШІ</h2>
+            <p>Деталі про квантові обчислення (додайте пізніше).</p>
+        </div>
+    </div>
+    <div id="modal3" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('modal3')">×</span>
+            <h2>ШІ в медицині</h2>
+            <p>Деталі про медицину (додайте пізніше).</p>
+        </div>
+    </div>
+{% endblock %}

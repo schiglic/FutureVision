@@ -1,32 +1,54 @@
 document.getElementById('contactForm').addEventListener('submit', function(e) {
     e.preventDefault();
 
-    const name = document.getElementById('name').value;
-    const email = document.getElementById('email').value;
-    const message = document.getElementById('message').value;
+    const data = {
+        name: document.getElementById('name').value,
+        email: document.getElementById('email').value,
+        message: document.getElementById('message').value
+    };
 
-    console.log('Відправляю дані:', { name, email, message }); // Додаємо відлагодження
+    console.log('Відправляю дані:', data); // Додаємо відлагодження
 
-    fetch('http://127.0.0.1:5000/save-message', {
+    fetch('/save-message', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ name, email, message })
+        body: JSON.stringify(data)
     })
     .then(response => {
         if (!response.ok) {
-            throw new Error('Помилка при відправленні: ' + response.status);
+            return response.json().then(error => {
+                throw new Error(error.error || 'Помилка при відправленні');
+            });
         }
         return response.json();
     })
     .then(data => {
         console.log('Відповідь сервера:', data);
-        alert('Дякуємо! Ваше повідомлення збережено.');
-        document.getElementById('contactForm').reset();
+        showModal('successModal'); // Показуємо модальне вікно
+        document.getElementById('contactForm').reset(); // Очищаємо форму
     })
     .catch(error => {
         console.error('Помилка:', error);
-        alert('Сталася помилка при відправленні. Перевір консоль.');
+        alert('Сталася помилка: ' + error.message); // Показуємо текст помилки
     });
 });
+
+// Функції для модальних вікон
+function showModal(modalId) {
+    document.getElementById(modalId).style.display = 'block';
+}
+
+function closeModal(modalId) {
+    document.getElementById(modalId).style.display = 'none';
+}
+
+window.onclick = function(event) {
+    const modals = document.getElementsByClassName('modal');
+    for (let i = 0; i < modals.length; i++) {
+        if (event.target == modals[i]) {
+            modals[i].style.display = 'none';
+        }
+    }
+};

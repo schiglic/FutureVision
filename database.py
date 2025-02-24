@@ -18,8 +18,8 @@ def save_message(name, email, message):
         try:
             cursor = connection.cursor()
             insert_query = """
-                INSERT INTO messages (name, email, message)
-                VALUES (%s, %s, %s)
+                INSERT INTO messages (name, email, message, read)
+                VALUES (%s, %s, %s, false)
             """
             cursor.execute(insert_query, (name, email, message))
             connection.commit()
@@ -33,3 +33,5 @@ def save_message(name, email, message):
     else:
         print("Не вдалося підключитися до бази даних!")
 
+if __name__ == "__main__":
+    save_message("Тест", "test@example.com", "Тестове повідомлення")
