@@ -1,46 +1,145 @@
 {% extends "base.html" %}
 
+{% block title %}Мрії про ШІ: Інтерактивна подорож{% endblock title %}
+{% block header %}Мрії про ШІ: Інтерактивна подорож{% endblock header %}
+
+{% block styles %}
+    {{ super() }}
+    <link rel="stylesheet" href="{{ url_for('static', filename='artificial.css') }}">
+{% endblock styles %}
+
 {% block content %}
-    <section class="hero">
-        <h1>Розвиток штучного інтелекту</h1>
-        <p>ШІ змінює світ, від медицини до автоматизації. Дізнайтеся про останні досягнення та квантові обчислення.</p>
-    </section>
-    <section class="articles">
+<!-- Геро-секція з центральним 3D-зображенням -->
+<section class="hero">
+    <h2>Наші мрії про майбутнє: Штучний інтелект</h2>
+    <p>Досліджуйте, як ШІ змінює світ, від медицини до автоматизації. Прокручуйте вниз, щоб дізнатися більше!</p>
+    <!-- Центральне 3D-зображення для привабливості -->
+    <div class="hero-3d-image">
+        <img src="{{ url_for('static', filename='img/mars-img.jpg') }}" alt="3D ШІ Google" class="hero-3d">
+    </div>
+</section>
+
+<!-- Слайдер історії -->
+<section class="history-slider">
+    <h2>Історія ШІ: Ключові етапи</h2>
+    <div class="slider-container">
+        <div class="history-item">
+            <img src="{{ url_for('static', filename='img/ai-history-1950.jpg') }}" alt="1950s: Birth of AI">
+            <h3>1950-ті: Народження ШІ</h3>
+            <p>Алан Тюрінг закладає основи ШІ з тестом Тюрінга.</p>
+        </div>
+        <div class="history-item">
+            <img src="{{ url_for('static', filename='img/ai-history-1960.jpg') }}" alt="1960s: AI Boom">
+            <h3>1960-ті: Бум ШІ</h3>
+            <p>Перші програми ШІ та початок досліджень у лабораторіях.</p>
+        </div>
+        <div class="history-item">
+            <img src="{{ url_for('static', filename='img/ai-history-1990.jpg') }}" alt="1990s: AI Milestones">
+            <h3>1990-ті: Віхи ШІ</h3>
+            <p>Deep Blue від IBM перемагає Каспарова в шахах.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Секція статей -->
+<section class="articles">
+    <h2>Досліджуйте ШІ</h2>
+    <div class="article-grid">
         <article class="article-card" onclick="showModal('modal1')">
-            <h2>Сучасні досягнення ШІ</h2>
-            <img src="{{ url_for('static', filename='img/ai1.jpg') }}" alt="ШІ досягнення" class="article-img">
-            <p>Клікніть, щоб дізнатися про GPT-4 та AlphaFold.</p>
+            <img src="{{ url_for('static', filename='img/ai1.jpg') }}" alt="Сучасні досягнення ШІ">
+            <h3>Сучасні технології ШІ</h3>
+            <p>Дізнайтесь про GPT-4, AlphaFold та більше!</p>
         </article>
         <article class="article-card" onclick="showModal('modal2')">
-            <h2>Квантові обчислення та ШІ</h2>
-            <img src="{{ url_for('static', filename='img/ai2.jpg') }}" alt="Квантові обчислення" class="article-img">
-            <p>Дізнайтеся, як IBM і Google інтегрують квантові технології.</p>
+            <img src="{{ url_for('static', filename='img/mars-img.jpg') }}" alt="Майбутні можливості ШІ">
+            <h3>Майбутні можливості</h3>
+            <p>Як ШІ може змінити наше життя в майбутньому.</p>
         </article>
         <article class="article-card" onclick="showModal('modal3')">
-            <h2>ШІ в медицині</h2>
-            <img src="{{ url_for('static', filename='img/ai3.jpg') }}" alt="ШІ в медицині" class="article-img">
-            <p>Клікніть, щоб дізнатися про діагностику хвороб.</p>
+            <img src="{{ url_for('static', filename='img/ai3.jpg') }}" alt="Етичні виклики ШІ">
+            <h3>Етичні міркування</h3>
+            <p>Проблеми упередженості та автоматизації праці.</p>
         </article>
-    </section>
+    </div>
+
+    <!-- Модальні вікна для деталей статей -->
     <div id="modal1" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal('modal1')">×</span>
-            <h2>Сучасні досягнення ШІ</h2>
-            <p>Деталі про досягнення (додайте пізніше).</p>
+            <h3>Сучасні технології ШІ</h3>
+            <p>Сьогодні ШІ революціонізує світ завдяки моделям, як GPT-4 від OpenAI, що генерує текст людської якості, та AlphaFold від DeepMind, який розв’язує проблему згортання білків.</p>
         </div>
     </div>
     <div id="modal2" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal('modal2')">×</span>
-            <h2>Квантові обчислення та ШІ</h2>
-            <p>Деталі про квантові обчислення (додайте пізніше).</p>
+            <h3>Майбутні можливості</h3>
+            <p>Уявіть ШІ, який діагностує хвороби швидше за лікарів, автоматизує транспорт чи навіть допомагає колонізувати Марс!</p>
         </div>
     </div>
     <div id="modal3" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal('modal3')">×</span>
-            <h2>ШІ в медицині</h2>
-            <p>Деталі про медицину (додайте пізніше).</p>
+            <h3>Етичні міркування</h3>
+            <p>ШІ може посилювати упередженість даних або призводити до втрати робочих місць. Як ми збалансуємо прогрес і відповідальність?</p>
         </div>
     </div>
-{% endblock %}
+</section>
+
+<!-- Секція голосування -->
+<section class="vote-section">
+    <h2>Яке майбутнє ШІ вам подобається?</h2>
+    <form>
+        <label><input type="radio" name="vote" value="healthcare"> ШІ в медицині</label>
+        <label><input type="radio" name="vote" value="education"> ШІ в освіті</label>
+        <label><input type="radio" name="vote" value="transportation"> ШІ в транспорті</label>
+        <button type="submit">Проголосувати</button>
+    </form>
+</section>
+
+<!-- Секція етичних викликів -->
+<section class="ethics-section">
+    <h2>Етичні виклики ШІ</h2>
+    <div class="accordion">
+        <h3 onclick="toggleContent('content1')">Упередженість у ШІ</h3>
+        <div id="content1" class="content">
+            <p>ШІ може відображати упередження, закладені в даних, що призводить до несправедливих рішень у наймі чи правосудді.</p>
+        </div>
+        <h3 onclick="toggleContent('content2')">Втрата робочих місць</h3>
+        <div id="content2" class="content">
+            <p>Автоматизація може замінити мільйони працівників. Як суспільство адаптується до цього?</p>
+        </div>
+        <h3 onclick="toggleContent('content3')">Конфіденційність</h3>
+        <div id="content3" class="content">
+            <p>ШІ збирає величезні обсяги даних. Чи можемо ми захистити нашу приватність?</p>
+        </div>
+    </div>
+</section>
+
+<!-- Секція висновку -->
+<section class="conclusion-section">
+    <h2>Поділіться своєю думкою</h2>
+    <p>Що ви думаєте про майбутнє ШІ? Залиште свій відгук!</p>
+    <form>
+        <input type="text" placeholder="Ваше ім’я" required>
+        <input type="email" placeholder="Електронна пошта" required>
+        <textarea placeholder="Ваше повідомлення" required></textarea>
+        <button type="submit">Надіслати</button>
+    </form>
+</section>
+{% endblock content %}
+
+{% block scripts %}
+<script>
+    function showModal(modalId) {
+        document.getElementById(modalId).style.display = 'block';
+    }
+    function closeModal(modalId) {
+        document.getElementById(modalId).style.display = 'none';
+    }
+    function toggleContent(contentId) {
+        var content = document.getElementById(contentId);
+        content.style.display = content.style.display === 'block' ? 'none' : 'block';
+    }
+</script>
+{% endblock scripts %}

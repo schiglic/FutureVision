@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Future Vision - {{ title }}</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    {% block styles %}
+        <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    {% endblock %}
 </head>
 <body>
     <header>
