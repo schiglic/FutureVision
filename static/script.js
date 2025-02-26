@@ -1,44 +1,51 @@
-// Обробка форми голосування
-document.getElementById('voteForm').addEventListener('submit', function(e) {
-    e.preventDefault();
+// Обробка форми контактів
+const contactForm = document.getElementById('contactForm');
+if (contactForm) {
+    contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const message = document.getElementById('message').value;
 
-    const selectedOption = document.querySelector('input[name="vote"]:checked');
-    if (!selectedOption) {
-        alert('Будь ласка, виберіть варіант!');
-        return;
-    }
-
-    const data = {
-        vote: selectedOption.value
-    };
-
-    console.log('Відправляю дані голосування:', data); // Додаємо відлагодження
-
-    fetch('/save-vote', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data)
-    })
-    .then(response => {
-        if (!response.ok) {
-            return response.json().then(error => {
-                throw new Error(error.error || 'Помилка при голосуванні');
-            });
+        if (!name || !email || !message) {
+            alert('Будь ласка, заповніть усі поля!');
+            return;
         }
-        return response.json();
-    })
-    .then(data => {
-        console.log('Відповідь сервера:', data);
-        showModal('successModal'); // Показуємо модальне вікно
-        document.getElementById('voteForm').reset(); // Очищаємо форму
-    })
-    .catch(error => {
-        console.error('Помилка:', error);
-        alert('Сталася помилка: ' + error.message); // Показуємо текст помилки
+
+        const data = {
+            name: name,
+            email: email,
+            message: message
+        };
+
+        console.log('Відправляю дані контактів:', data);
+
+        fetch('/contacts', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => {
+            if (!response.ok) {
+                return response.json().then(error => {
+                    throw new Error(error.error || 'Помилка при відправці');
+                });
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('Відповідь сервера:', data);
+            showModal('successModal');
+            document.getElementById('contactForm').reset();
+        })
+        .catch(error => {
+            console.error('Помилка:', error);
+            alert('Сталася помилка: ' + error.message);
+        });
     });
-});
+}
 
 // Функції для модальних вікон
 function showModal(modalId) {
@@ -58,28 +65,29 @@ window.onclick = function(event) {
     }
 };
 
-// Функція для 3D-обертання зображення залежно від позиції миші
+// Функція для 3D-обертання зображення
 document.addEventListener('DOMContentLoaded', function() {
     const hero3d = document.querySelector('.hero-3d');
-    const maxRotation = 20; // Максимальний кут обертання в градусах
+    if (hero3d) {
+        const maxRotation = 20;
 
-    hero3d.addEventListener('mousemove', function(e) {
-        const rect = hero3d.getBoundingClientRect();
-        const mouseX = e.clientX - rect.left;
-        const mouseY = e.clientY - rect.top;
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
+        hero3d.addEventListener('mousemove', function(e) {
+            const rect = hero3d.getBoundingClientRect();
+            const mouseX = e.clientX - rect.left;
+            const mouseY = e.clientY - rect.top;
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
 
-        // Розрахунок кутів обертання на основі позиції миші
-        const rotateY = ((mouseX - centerX) / centerX) * maxRotation;
-        const rotateX = -((mouseY - centerY) / centerY) * maxRotation;
+            const rotateY = ((mouseX - centerX) / centerX) * maxRotation;
+            const rotateX = -((mouseY - centerY) / centerY) * maxRotation;
 
-        hero3d.style.transform = `perspective(1000px) rotateY(${rotateY}deg) rotateX(${rotateX}deg)`;
-    });
+            hero3d.style.transform = `perspective(1000px) rotateY(${rotateY}deg) rotateX(${rotateX}deg)`;
+        });
 
-    hero3d.addEventListener('mouseleave', function() {
-        hero3d.style.transform = 'perspective(1000px) rotateY(0deg) rotateX(0deg)';
-    });
+        hero3d.addEventListener('mouseleave', function() {
+            hero3d.style.transform = 'perspective(1000px) rotateY(0deg) rotateX(0deg)';
+        });
+    }
 });
 
 // Анімація появи секцій при прокручуванні
