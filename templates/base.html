@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="uk">
+
 <head>
     <meta charset="UTF-8">
     <title>Future Vision - {{ title }}</title>
     {% block styles %}
-        <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
     {% endblock %}
 </head>
+
 <body>
     <header>
         <nav class="navbar">
@@ -15,7 +17,7 @@
                 <li><a href="{{ url_for('show_home') }}">Головна</a></li>
                 <li><a href="{{ url_for('show_space') }}">Космос</a></li>
                 <li><a href="{{ url_for('show_artificial') }}">ШІ</a></li>
-                <li><a href="{{ url_for('contacts') }}">Контакти</a></li>
+                <li><a href="{{ url_for('show_contacts') }}">Контакти</a></li>
             </ul>
         </nav>
     </header>
@@ -26,4 +28,5 @@
         <p>© 2025 Future Vision. Всі права збережені.</p>
     </footer>
 </body>
+
 </html>
