@@ -79,7 +79,9 @@ header {
     margin-top: 30px;
 }
 
-.btn-primary, .btn-secondary, .btn-tertiary {
+.btn-primary,
+.btn-secondary,
+.btn-tertiary {
     padding: 12px 25px;
     border: none;
     border-radius: 5px;
@@ -103,7 +105,9 @@ header {
     color: #fff;
 }
 
-.btn-primary:hover, .btn-secondary:hover, .btn-tertiary:hover {
+.btn-primary:hover,
+.btn-secondary:hover,
+.btn-tertiary:hover {
     transform: translateY(-2px);
 }
 
@@ -117,48 +121,6 @@ header {
 
 .btn-tertiary:hover {
     background-color: #444;
-}
-
-.articles {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
-    padding: 20px 0;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.article-card {
-    background-color: #1a1a1a;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-    transition: transform 0.3s ease;
-    cursor: pointer;
-}
-
-.article-card:hover {
-    transform: translateY(-5px);
-}
-
-.article-card h2 {
-    color: #9370db;
-    margin-bottom: 15px;
-    font-size: 1.5rem;
-}
-
-.article-card p {
-    color: #ccc;
-    margin-bottom: 20px;
-    line-height: 1.5;
-}
-
-.article-img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    border-radius: 5px;
-    margin-bottom: 15px;
 }
 
 
@@ -237,7 +199,8 @@ header {
     color: #ccc;
 }
 
-.contact-form input, .contact-form textarea {
+.contact-form input,
+.contact-form textarea {
     width: 100%;
     padding: 10px;
     margin-bottom: 15px;
@@ -293,7 +256,7 @@ footer {
         font-size: 1rem;
     }
 
-    .articles, .gallery {
+    .gallery {
         grid-template-columns: 1fr;
     }
 

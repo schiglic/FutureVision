@@ -1,4 +1,4 @@
-/* Загальні стилі для сторінки */
+/* Загальні стилі для сторінки, що розширюють styles.css */
 * {
     margin: 0;
     padding: 0;
@@ -6,17 +6,25 @@
     font-family: 'Arial', sans-serif;
 }
 
-/* Фон з градієнтом */
+/* Фон з градієнтом і бічними зображеннями */
 body {
-    background: linear-gradient(45deg, #000033, #00008B);
+    background: linear-gradient(45deg, #000033, #00008B); /* Насичений чорно-синій градієнт */
     color: #fff;
     line-height: 1.6;
     overflow-x: hidden;
-    min-height: 100vh;
     position: relative;
+    min-height: 100vh;
+    animation: backgroundGradient 15s ease infinite;
 }
 
-/* Бічні зображення (статичні) */
+/* Анімація градієнта тла для динаміки */
+@keyframes backgroundGradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Бічні зображення без анімації руху */
 body::before {
     content: '';
     position: fixed;
@@ -24,13 +32,14 @@ body::before {
     top: 0;
     width: 200px;
     height: 100vh;
-    background: url('img/left-ai.jpg') no-repeat center center;
+    background: url('img/left-ai.jpg') no-repeat center center; /* Прямий шлях до зображення */
     background-size: cover;
-    background-attachment: fixed;
-    z-index: -1;
-    filter: brightness(50%);
+    background-attachment: fixed; /* Паралакс   -ефект */
+    z-index: -1; /* Розташовується позаду вмісту */
+    filter: brightness(50%); /* Зменшує яскравість на 15% для легкого затемнення */
 }
 
+/* Бічне зображення праворуч без анімації */
 body::after {
     content: '';
     position: fixed;
@@ -38,49 +47,47 @@ body::after {
     top: 0;
     width: 200px;
     height: 100vh;
-    background: url('img/right-ai.jpg') no-repeat center center;
+    background: url('img/right-ai.jpg') no-repeat center center; /* Прямий шлях до зображення */
     background-size: cover;
-    background-attachment: fixed;
-    z-index: -1;
-    filter: brightness(50%);
+    background-attachment: fixed; /* Паралакс-ефект */
+    z-index: -1; /* Розташовується позаду вмісту */
+    filter: brightness(50%); /* Зменшує яскравість на 15% для легкого затемнення */
 }
 
-/* Основний вміст */
-.content-wrapper {
-    max-width: calc(100% - 400px); /* Враховуємо 200px зліва і 200px справа */
-    margin: 0 auto;
-    padding: 20px;
-    position: relative;
-    z-index: 1;
-}
-
-/* Секція героя */
+/* Секція героя з 3D-зображенням */
 .hero {
-    padding: 80px 0 60px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 80px 20px 60px;
     text-align: center;
-    background: rgba(0, 0, 51, 0.8);
+    position: relative;
+    background: rgba(0, 0, 51, 0.8); /* Насичений темно-синій фон */
     border-radius: 0 0 30px 30px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    animation: fadeIn 1.5s ease-in;
 }
 
 .hero h2 {
     font-size: 3.5rem;
-    margin-bottom: 1rem;
-    color: #4A90E2;
+    margin-bottom: 2rem;
+    color: #4A90E2; /* Яскраво-синій акцент */
     text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+    animation: slideDown 1s ease-out;
 }
 
 .hero p {
     font-size: 1.5rem;
     max-width: 800px;
-    margin: 0 auto 1.5rem;
-    color: #87CEEB;
+    margin: 0 auto 3rem;
+    color: #87CEEB; /* Насичений блакитний текст */
+    animation: fadeIn 2s ease-in 0.5s forwards;
 }
 
-/* Центральне 3D-зображення (статичне) */
+/* Центральне 3D-зображення */
 .hero-3d-image {
     max-width: 600px;
     margin: 0 auto;
+    perspective: 1000px; /* Створює 3D-ефект */
 }
 
 .hero-3d {
@@ -88,123 +95,270 @@ body::after {
     height: auto;
     border-radius: 15px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    transition: transform 0.5s ease, box-shadow 0.5s ease;
+    transform: perspective(1000px) rotateY(10deg) rotateX(5deg); /* Початковий 3D-ефект */
 }
 
-/* Секція статей */
-.articles-section {
-    max-width: 1200px; /* Максимальна ширина блоку */
-    margin: 2rem auto; /* Центруємо по горизонталі */
-    padding: 40px 20px; /* Додаємо внутрішні відступи */
-    background: rgba(0, 0, 51, 0.9);
+.hero-3d:hover {
+    transform: perspective(1000px) rotateY(-10deg) rotateX(-5deg) scale(1.05); /* Зміна кута при наведенні */
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7);
+}
+
+/* Слайдер історії */
+.history-slider {
+    max-width: 1200px;
+    margin: 0 auto 4rem;
+    padding: 2.5rem;
+    background: rgba(0, 0, 51, 0.9); /* Насичений темно-синій фон */
     border-radius: 15px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-    text-align: center;
+    animation: slideUp 1s ease-in;
 }
 
-.articles-section h2 {
+.history-slider h2 {
     font-size: 2.5rem;
     margin-bottom: 2rem;
-    color: #4A90E2;
+    text-align: center;
+    color: #4A90E2; /* Яскраво-синій акцент */
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
-.article-content {
+.slider-container {
     display: flex;
-    flex-direction: column;
-    align-items: center;
     gap: 2rem;
+    padding-bottom: 1rem;
+    overflow-x: auto;
+    scroll-behavior: smooth;
 }
 
-.article {
-    max-width: 800px;
-    text-align: left;
-    padding: 1.5rem;
-    background: rgba(0, 0, 51, 0.8);
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+.slider-container::-webkit-scrollbar {
+    height: 10px;
+    background: #000033; /* Насичений темно-синій фон */
 }
 
-.article h3 {
-    color: #4A90E2;
-    margin-bottom: 1rem;
-}
-
-.article p, .article ul, .article blockquote {
-    color: #87CEEB;
-    font-size: 1.2rem;
-    line-height: 1.8;
-    margin-bottom: 1rem;
-}
-
-.article ul {
-    list-style: none;
-    padding-left: 0;
-}
-
-.article ul li {
-    position: relative;
-    padding-left: 1.5rem;
-}
-
-.article ul li::before {
-    content: "•";
-    color: #4A90E2;
-    position: absolute;
-    left: 0;
-}
-
-/* Галерея зображень із описами при наведенні (CSS-only) */
-.image-gallery {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-    justify-content: center;
-    position: relative;
-}
-
-.gallery-image {
-    max-width: 300px;
-    height: auto;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-}
-
-.image-description {
-    display: none;
-    position: absolute;
-    background: rgba(0, 0, 51, 0.9);
-    color: #87CEEB;
-    padding: 0.8rem;
+.slider-container::-webkit-scrollbar-thumb {
+    background: linear-gradient(90deg, #357abd, #4A90E2); /* Насичені сині кольори */
     border-radius: 5px;
-    font-size: 0.9rem;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-    z-index: 10;
-    top: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    margin-top: 0.5rem;
-    width: max-content;
+    transition: background 0.5s;
 }
 
-.gallery-image:hover + .image-description {
-    display: block;
+.slider-container::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(90deg, #4A90E2, #1E90FF); /* Ще більш насичений синій */
 }
 
-/* Секція голосування (статична) */
+.history-item {
+    flex: 0 0 300px;
+    background: linear-gradient(135deg, #000033, #00008B); /* Насичений чорно-синій градієнт */
+    border-radius: 12px;
+    padding: 1.5rem;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    animation: fadeInSlide 1s ease-out;
+}
+
+.history-item:hover {
+    transform: scale(1.05) translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.history-item img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.history-item:hover img {
+    transform: scale(1.1);
+    filter: brightness(1.2);
+}
+
+.history-item h3 {
+    font-size: 1.8rem;
+    margin-bottom: 0.8rem;
+    color: #4A90E2; /* Яскраво-синій акцент */
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+.history-item p {
+    color: #87CEEB; /* Насичений блакитний текст */
+    font-size: 1.1rem;
+}
+
+/* Секція статей */
+.articles {
+    max-width: 1200px;
+    margin: 0 auto 4rem;
+    padding: 2.5rem;
+    background: rgba(0, 0, 51, 0.9); /* Насичений темно-синій фон */
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    animation: slideUp 1.2s ease-in;
+}
+
+.articles h2 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    color: #4A90E2; /* Яскраво-синій акцент */
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.article-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2.5rem;
+}
+
+.article-card {
+    background: linear-gradient(135deg, #000033, #00008B); /* Насичений чорно-синій градієнт */
+    border-radius: 15px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    transition: transform 0.4s ease, box-shadow 0.4s ease, background 0.4s ease;
+    cursor: pointer;
+    padding: 1rem;
+    animation: fadeInCard 1.5s ease-out;
+}
+
+.article-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
+    background: linear-gradient(135deg, #00008B, #0000CD); /* Ще більш насичений синій */
+}
+
+.article-card img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 10px;
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.article-card:hover img {
+    transform: scale(1.1);
+    filter: brightness(1.2);
+}
+
+.article-card h3 {
+    font-size: 1.8rem;
+    padding: 1rem 0 0.5rem;
+    color: #4A90E2; /* Яскраво-синій акцент */
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+.article-card p {
+    padding: 0 0 1rem;
+    color: #87CEEB; /* Насичений блакитний текст */
+    font-size: 1.1rem;
+}
+
+/* Модальні вікна */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+    animation: modalFadeIn 0.5s ease-in;
+}
+
+.modal-content {
+    background: linear-gradient(135deg, #000033, #00008B); /* Насичений чорно-синій градієнт */
+    margin: 10% auto;
+    padding: 2.5rem;
+    width: 90%;
+    max-width: 600px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+    position: relative;
+    animation: modalSlideIn 0.5s ease-out;
+}
+
+.close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 2.5rem;
+    cursor: pointer;
+    color: #87CEEB; /* Насичений блакитний текст */
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.close:hover {
+    color: #4A90E2; /* Яскраво-синій акцент */
+    transform: scale(1.2);
+}
+
+.modal h3 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: #4A90E2; /* Яскраво-синій акцент */
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+.modal p {
+    color: #87CEEB; /* Насичений блакитний текст */
+    font-size: 1.2rem;
+}
+
+/* Анімації */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideDown {
+    from { transform: translateY(-20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes slideUp {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes fadeInSlide {
+    from { opacity: 0; transform: translateX(-20px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fadeInCard {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes modalFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes modalSlideIn {
+    from { transform: translateY(-20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+/* Секція голосування */
 .vote-section {
     max-width: 1200px;
     margin: 0 auto 4rem;
     padding: 2.5rem;
-    background: rgba(0, 0, 51, 0.9);
+    background: rgba(0, 0, 51, 0.9); /* Насичений темно-синій фон */
     border-radius: 15px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-    text-align: center;
+    animation: slideUp 1.2s ease-in;
 }
 
 .vote-section h2 {
     font-size: 2.5rem;
     margin-bottom: 2rem;
-    color: #4A90E2;
+    text-align: center;
+    color: #4A90E2; /* Яскраво-синій акцент */
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
@@ -221,21 +375,22 @@ body::after {
     display: flex;
     align-items: center;
     gap: 0.8rem;
-    color: #87CEEB;
+    color: #87CEEB; /* Насичений блакитний текст */
 }
 
 .vote-section input[type="radio"] {
     appearance: none;
     width: 18px;
     height: 18px;
-    border: 2px solid #4A90E2;
+    border: 2px solid #4A90E2; /* Яскраво-синій акцент */
     border-radius: 50%;
     cursor: pointer;
     position: relative;
+    transition: border-color 0.3s ease;
 }
 
 .vote-section input[type="radio"]:checked {
-    background: #4A90E2;
+    background: #4A90E2; /* Яскраво-синій акцент */
     border-color: #4A90E2;
 }
 
@@ -244,7 +399,7 @@ body::after {
     position: absolute;
     width: 10px;
     height: 10px;
-    background: #000033;
+    background: #000033; /* Насичений темно-синій фон */
     border-radius: 50%;
     top: 50%;
     left: 50%;
@@ -253,13 +408,20 @@ body::after {
 
 .vote-section button {
     padding: 1.2rem;
-    background: linear-gradient(90deg, #357abd, #4A90E2);
+    background: linear-gradient(90deg, #357abd, #4A90E2); /* Насичені сині кольори */
     color: #fff;
     border: none;
     border-radius: 10px;
+    cursor: pointer;
     font-size: 1.2rem;
-    cursor: not-allowed;
-    opacity: 0.7;
+    transition: background 0.4s ease, transform 0.4s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.vote-section button:hover {
+    background: linear-gradient(90deg, #4A90E2, #1E90FF); /* Ще більш насичений синій */
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
 }
 
 /* Секція етичних викликів */
@@ -267,37 +429,136 @@ body::after {
     max-width: 1200px;
     margin: 0 auto 4rem;
     padding: 2.5rem;
-    background: rgba(0, 0, 51, 0.9);
+    background: rgba(0, 0, 51, 0.9); /* Насичений темно-синій фон */
     border-radius: 15px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-    text-align: center;
+    animation: slideUp 1.2s ease-in;
 }
 
 .ethics-section h2 {
     font-size: 2.5rem;
     margin-bottom: 2rem;
-    color: #4A90E2;
+    text-align: center;
+    color: #4A90E2; /* Яскраво-синій акцент */
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
-.ethics-content {
-    max-width: 800px;
+.accordion h3 {
+    background: linear-gradient(90deg, #000033, #00008B); /* Насичений чорно-синій градієнт */
+    padding: 1.5rem;
+    margin: 0.5rem 0;
+    cursor: pointer;
+    border-radius: 10px;
+    font-size: 1.8rem;
+    color: #4A90E2; /* Яскраво-синій акцент */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    transition: background 0.4s ease, transform 0.4s ease;
+}
+
+.accordion h3:hover {
+    background: linear-gradient(90deg, #00008B, #0000CD); /* Ще більш насичений синій */
+    transform: translateY(-2px);
+}
+
+.accordion .content {
+    display: none;
+    padding: 1.5rem;
+    background: rgba(0, 0, 51, 0.8); /* Насичений темно-синій фон */
+    border-radius: 10px;
+    color: #87CEEB; /* Насичений блакитний текст */
+    margin-top: 0.5rem;
+    animation: fadeInContent 0.5s ease-in;
+}
+
+.accordion .content.show {
+    display: block;
+}
+
+@keyframes fadeInContent {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Секція висновку */
+.conclusion-section {
+    max-width: 1200px;
+    margin: 0 auto 4rem;
+    padding: 2.5rem;
+    background: rgba(0, 0, 51, 0.9); /* Насичений темно-синій фон */
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    animation: slideUp 1.2s ease-in;
+}
+
+.conclusion-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    color: #4A90E2; /* Яскраво-синій акцент */
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.conclusion-section p {
+    font-size: 1.3rem;
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #87CEEB; /* Насичений блакитний текст */
+}
+
+.conclusion-section form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    max-width: 500px;
     margin: 0 auto;
-    text-align: left;
-    color: #87CEEB;
+}
+
+.conclusion-section input,
+.conclusion-section textarea {
+    padding: 1.2rem;
+    background: rgba(0, 0, 51, 0.8); /* Насичений темно-синій фон */
+    border: 2px solid #4A90E2; /* Яскраво-синій акцент */
+    border-radius: 12px;
+    color: #fff;
+    font-size: 1.1rem;
+    transition: border-color 0.4s ease, box-shadow 0.4s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.conclusion-section input:focus,
+.conclusion-section textarea:focus {
+    border-color: #1E90FF; /* Ще більш насичений синій */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    outline: none;
+}
+
+.conclusion-section textarea {
+    min-height: 150px;
+    resize: vertical;
+}
+
+.conclusion-section button {
+    padding: 1.2rem;
+    background: linear-gradient(90deg, #357abd, #4A90E2); /* Насичені сині кольори */
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
     font-size: 1.2rem;
-    line-height: 1.8;
+    transition: background 0.4s ease, transform 0.4s ease, box-shadow 0.4s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.conclusion-section button:hover {
+    background: linear-gradient(90deg, #4A90E2, #1E90FF); /* Ще більш насичений синій */
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
 }
 
 /* Адаптивність */
 @media (max-width: 768px) {
     body::before, body::after {
-        display: none; /* Приховуємо бічні зображення на малих екранах */
-    }
-
-    .content-wrapper {
-        max-width: 100%; /* Розширюємо контейнер до повної ширини */
-        padding: 10px;
+        display: none; /* Ховаємо бічні зображення на мобільних */
     }
 
     .hero {
@@ -316,12 +577,29 @@ body::after {
         max-width: 400px;
     }
 
-    .articles-section, .vote-section, .ethics-section {
+    .history-slider, .articles, .vote-section, .ethics-section, .conclusion-section {
         padding: 1.5rem;
-        max-width: 100%; /* Забезпечуємо повну ширину на малих екранах */
     }
 
-    .articles-section h2, .vote-section h2, .ethics-section h2 {
+    .history-slider h2, .articles h2, .vote-section h2, .ethics-section h2, .conclusion-section h2 {
         font-size: 2rem;
+    }
+
+    .history-item {
+        flex: 0 0 250px;
+    }
+
+    .history-item img {
+        height: 150px;
+    }
+
+    .article-card img {
+        height: 200px;
+    }
+
+    .modal-content {
+        margin: 20% auto;
+        width: 90%;
+        max-width: 400px;
     }
 }
