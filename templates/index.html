@@ -2,12 +2,17 @@
 
 {% block content %}
     <section class="hero">
-        <h1>Наші мрії про майбутнє</h1>
-        <p>Від колонізації Марса до квантових комп'ютерів – ми живемо в епосі, коли найсміливіші мрії стають реальністю. Досліджуйте з нами майбутнє технологій та космічних проривів.</p>
-        <div class="buttons">
-            <a href="{{ url_for('show_space') }}" class="btn-primary">Дослідити космос</a>
-            <a href="{{ url_for('show_artificial') }}" class="btn-secondary">Відкрити ШІ</a>
-            <button class="btn-tertiary">Мрії про майбутнє</button>
+        <video autoplay muted loop id="hero-video">
+            <source src="{{ url_for('static', filename='videos/fon.mp4') }}" type="video/mp4">
+            Ваш браузер не підтримує відео.
+        </video>
+        <div class="hero-content">
+            <h1>Наші мрії про майбутнє</h1>
+            <p>Від колонізації Марса до квантових комп'ютерів – ми живемо в епосі, коли найсміливіші мрії стають реальністю. Досліджуйте з нами майбутнє технологій та космічних проривів.</p>
+            <div class="buttons">
+                <a href="{{ url_for('show_space') }}" class="btn-primary">Дослідити космос</a>
+                <a href="{{ url_for('show_artificial') }}" class="btn-secondary">Дослідити ШІ</a>
+            </div>
         </div>
     </section>
 {% endblock %}

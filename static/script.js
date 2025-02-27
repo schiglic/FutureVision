@@ -7,7 +7,7 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
         message: document.getElementById('message').value
     };
 
-    console.log('Відправляю дані:', data); // Додаємо відлагодження
+    console.log('Відправляю дані:', data); 
 
     fetch('/save-message', {
         method: 'POST',
@@ -26,16 +26,16 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
     })
     .then(data => {
         console.log('Відповідь сервера:', data);
-        showModal('successModal'); // Показуємо модальне вікно
-        document.getElementById('contactForm').reset(); // Очищаємо форму
+        showModal('successModal'); 
+        document.getElementById('contactForm').reset(); 
     })
     .catch(error => {
         console.error('Помилка:', error);
-        alert('Сталася помилка: ' + error.message); // Показуємо текст помилки
+        alert('Сталася помилка: ' + error.message); 
     });
 });
 
-// Функції для модальних вікон
+
 function showModal(modalId) {
     document.getElementById(modalId).style.display = 'block';
 }

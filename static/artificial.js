@@ -1,4 +1,4 @@
-// Голосування з динамічними результатами (імітація)
+//  (непотріб)
 document.addEventListener('DOMContentLoaded', function() {
     const voteForm = document.getElementById('vote-form');
     const voteResults = document.getElementById('vote-results');
