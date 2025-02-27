@@ -1,4 +1,4 @@
-/* Загальні стилі для сторінки */
+/* Базові стилі */
 * {
     margin: 0;
     padding: 0;
@@ -6,7 +6,6 @@
     font-family: 'Arial', sans-serif;
 }
 
-/* Фон з градієнтом */
 body {
     background: linear-gradient(45deg, #000033, #00008B);
     color: #fff;
@@ -16,7 +15,6 @@ body {
     position: relative;
 }
 
-/* Бічні зображення (статичні) */
 body::before {
     content: '';
     position: fixed;
@@ -24,11 +22,11 @@ body::before {
     top: 0;
     width: 200px;
     height: 100vh;
-    background: url('img/left-ai.jpg') no-repeat center center;
+    background: url('/static/img/left-ai.jpg') no-repeat center center;
     background-size: cover;
     background-attachment: fixed;
     z-index: -1;
-    filter: brightness(50%);
+    filter: brightness(30%);
 }
 
 body::after {
@@ -38,23 +36,33 @@ body::after {
     top: 0;
     width: 200px;
     height: 100vh;
-    background: url('img/right-ai.jpg') no-repeat center center;
+    background: url('/static/img/right-ai.jpg') no-repeat center center;
     background-size: cover;
     background-attachment: fixed;
     z-index: -1;
-    filter: brightness(50%);
+    filter: brightness(30%);
 }
 
-/* Основний вміст */
 .content-wrapper {
-    max-width: calc(100% - 400px); /* Враховуємо 200px зліва і 200px справа */
+    max-width: calc(100% - 400px);
     margin: 0 auto;
     padding: 20px;
     position: relative;
     z-index: 1;
 }
 
-/* Секція героя */
+/* Анімації */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Геро-секція */
 .hero {
     padding: 80px 0 60px;
     text-align: center;
@@ -68,6 +76,7 @@ body::after {
     margin-bottom: 1rem;
     color: #4A90E2;
     text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+    animation: fadeInUp 1s ease-out;
 }
 
 .hero p {
@@ -75,12 +84,13 @@ body::after {
     max-width: 800px;
     margin: 0 auto 1.5rem;
     color: #87CEEB;
+    animation: fadeInUp 1.2s ease-out;
 }
 
-/* Центральне 3D-зображення (статичне) */
 .hero-3d-image {
     max-width: 600px;
     margin: 0 auto;
+    animation: fadeIn 1.5s ease-out;
 }
 
 .hero-3d {
@@ -88,13 +98,18 @@ body::after {
     height: auto;
     border-radius: 15px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease;
+}
+
+.hero-3d:hover {
+    transform: scale(1.05);
 }
 
 /* Секція статей */
 .articles-section {
-    max-width: 1200px; /* Максимальна ширина блоку */
-    margin: 2rem auto; /* Центруємо по горизонталі */
-    padding: 40px 20px; /* Додаємо внутрішні відступи */
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 40px 20px;
     background: rgba(0, 0, 51, 0.9);
     border-radius: 15px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
@@ -106,6 +121,7 @@ body::after {
     margin-bottom: 2rem;
     color: #4A90E2;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    animation: fadeInUp 1s ease-out;
 }
 
 .article-content {
@@ -122,6 +138,9 @@ body::after {
     background: rgba(0, 0, 51, 0.8);
     border-radius: 10px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    animation: fadeInUp 1s ease-out;
+    animation-delay: 0.2s;
+    animation-fill-mode: backwards;
 }
 
 .article h3 {
@@ -153,13 +172,16 @@ body::after {
     left: 0;
 }
 
-/* Галерея зображень із описами при наведенні (CSS-only) */
 .image-gallery {
     display: flex;
-    gap: 1rem;
+    gap: 2rem; /* Збільшив відступ між картинками */
     flex-wrap: wrap;
     justify-content: center;
+}
+
+.gallery-item {
     position: relative;
+    display: inline-block;
 }
 
 .gallery-image {
@@ -167,99 +189,34 @@ body::after {
     height: auto;
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.gallery-image:hover {
+    transform: scale(1.1);
+    filter: brightness(70%);
 }
 
 .image-description {
-    display: none;
     position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     background: rgba(0, 0, 51, 0.9);
     color: #87CEEB;
     padding: 0.8rem;
     border-radius: 5px;
     font-size: 0.9rem;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-    z-index: 10;
-    top: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    margin-top: 0.5rem;
-    width: max-content;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    width: 90%;
+    text-align: center;
+    pointer-events: none;
 }
 
 .gallery-image:hover + .image-description {
-    display: block;
-}
-
-/* Секція голосування (статична) */
-.vote-section {
-    max-width: 1200px;
-    margin: 0 auto 4rem;
-    padding: 2.5rem;
-    background: rgba(0, 0, 51, 0.9);
-    border-radius: 15px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-    text-align: center;
-}
-
-.vote-section h2 {
-    font-size: 2.5rem;
-    margin-bottom: 2rem;
-    color: #4A90E2;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-}
-
-.vote-section form {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    max-width: 400px;
-    margin: 0 auto;
-}
-
-.vote-section label {
-    font-size: 1.2rem;
-    display: flex;
-    align-items: center;
-    gap: 0.8rem;
-    color: #87CEEB;
-}
-
-.vote-section input[type="radio"] {
-    appearance: none;
-    width: 18px;
-    height: 18px;
-    border: 2px solid #4A90E2;
-    border-radius: 50%;
-    cursor: pointer;
-    position: relative;
-}
-
-.vote-section input[type="radio"]:checked {
-    background: #4A90E2;
-    border-color: #4A90E2;
-}
-
-.vote-section input[type="radio"]:checked::after {
-    content: '';
-    position: absolute;
-    width: 10px;
-    height: 10px;
-    background: #000033;
-    border-radius: 50%;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-.vote-section button {
-    padding: 1.2rem;
-    background: linear-gradient(90deg, #357abd, #4A90E2);
-    color: #fff;
-    border: none;
-    border-radius: 10px;
-    font-size: 1.2rem;
-    cursor: not-allowed;
-    opacity: 0.7;
+    opacity: 1;
 }
 
 /* Секція етичних викликів */
@@ -271,6 +228,9 @@ body::after {
     border-radius: 15px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
     text-align: center;
+    animation: fadeInUp 1s ease-out;
+    animation-delay: 0.6s;
+    animation-fill-mode: backwards;
 }
 
 .ethics-section h2 {
@@ -292,11 +252,11 @@ body::after {
 /* Адаптивність */
 @media (max-width: 768px) {
     body::before, body::after {
-        display: none; /* Приховуємо бічні зображення на малих екранах */
+        display: none;
     }
 
     .content-wrapper {
-        max-width: 100%; /* Розширюємо контейнер до повної ширини */
+        max-width: 100%;
         padding: 10px;
     }
 
@@ -316,12 +276,12 @@ body::after {
         max-width: 400px;
     }
 
-    .articles-section, .vote-section, .ethics-section {
+    .articles-section, .ethics-section {
         padding: 1.5rem;
-        max-width: 100%; /* Забезпечуємо повну ширину на малих екранах */
+        max-width: 100%;
     }
 
-    .articles-section h2, .vote-section h2, .ethics-section h2 {
+    .articles-section h2, .ethics-section h2 {
         font-size: 2rem;
     }
 }
